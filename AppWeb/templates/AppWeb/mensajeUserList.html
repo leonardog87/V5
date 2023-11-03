@@ -1,0 +1,26 @@
+{% extends "AppWeb/father.html" %}
+
+{% load static%}
+
+{% block tittle %}
+    mensaje user list
+{% endblock %}
+
+{% block link_cambiante2 %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'editarPerfil' %}">Perfil</a></li>
+{% endblock %}
+
+{% block titulocontenido_cambiante %}
+    <h1>Mensajes</h1><a href="{% url 'userList' %}">Usuarios</a>
+    <hr>    
+{% endblock %}
+
+{% block contenido_cambiante %}
+        <table>
+            {%for usuarios in diccionarioMensajes %}
+                <h4>{{ usuarios }}</h4>
+                &nbsp;<a class="btn btn-info" href="{% url 'mensajeUserDetail' usuarios.id %}">Ver</a>&nbsp;
+                <hr>        
+            {% endfor %}
+        </table>  
+{% endblock %}

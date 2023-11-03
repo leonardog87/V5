@@ -1,0 +1,30 @@
+{% extends "AppWeb/father.html" %}
+
+{% load static%}
+
+{% block tittle %}
+    Lista de Usuarios
+{% endblock %}
+
+{% block link_cambiante2 %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'editarPerfil' %}">Perfil</a></li>
+{% endblock %}
+
+{% block titulocontenido_cambiante %}
+    <h1>Lista de Usuarios </h1>
+{% endblock %}
+
+{% block contenido_cambiante %}    
+    {% for user in users %}
+        {% if user.id != request.user.id %}
+            <hr>
+                <table>
+                <h4>{{ user.username }}</h4>
+                <a class="btn btn-info" href="{% url 'mensajesuser' user.id %}">Enviar Mensaje</a>&nbsp;         
+            </table>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block section_cambiante %}
+{% endblock %}

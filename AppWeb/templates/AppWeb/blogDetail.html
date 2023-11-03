@@ -1,0 +1,51 @@
+{% extends "AppWeb/father.html" %}
+
+{% load static%}
+
+{% block tittle %}
+    Blog: {{ blog.titulofoto }}
+{% endblock %}
+
+{% block link_cambiante2 %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'editarPerfil' %}">Perfil</a></li>
+{% endblock %}
+
+{% block imagen_cambiante%}
+{% endblock %}
+
+{% block titulo_cambiante %}
+    <h1 class="fw-bolder mb-1">{{ blog.titulofoto }}</h1>
+    <hr>
+{% endblock %}
+
+{% block subtitulo_cambiante %}
+    <figure class="mb-4"><img class="img-fluid rounded" src="{{ blog.imagen.url }}" alt="img"></figure>
+{% endblock %}
+
+{% block titulocontenido_cambiante %}
+    <h2>{{ blog.titulomessage }}</h2>
+{% endblock %}
+
+{% block contenido_cambiante %}    
+    <p class="fs-5 mb-4">{{blog.message}}</p>
+    Creado por: {{ blog.user.username }} &nbsp; - &nbsp;  {{ blog.fecha }}    
+    {% if user.id == blog.user.id %}
+        <br>
+        <a class="btn btn-primary" href="{% url 'blogUpdate' blog.id %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'blogDelete' blog.id %}">Eliminar</a>                        
+    {% endif %}
+    <hr>
+    <h4>Mensajes</h4>
+    {% for mensaje in blog.mensajes.all %}
+    <div class="ms-3"></div>
+    <hr>
+    <div class="fw-bold">{{mensaje.user}}:</div>
+    <span class="claimedRight" maxlength="20">{{mensaje.message}}</span>
+    {% endfor %}
+    <br>
+    <br>
+
+        <a class="button" href="{% url 'bmensaje' blog.id %}">Crear mensaje</a>
+
+
+{% endblock %}

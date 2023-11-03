@@ -1,0 +1,58 @@
+{% extends "AppWeb/father.html" %}
+
+{% load static %}
+
+{% block tittle %}
+    mensajes detail
+{% endblock %}
+
+{% block link_cambiante2 %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'editarPerfil' %}">Perfil</a></li>
+{% endblock %}
+
+{% block imagen_cambiante%}
+{% endblock %}
+
+{% block titulo_cambiante %}
+    <h1 class="fw-bolder mb-1"></h1>
+{% endblock %}
+
+{% block subtitulo_cambiante %}
+{% endblock %}
+
+{% block titulocontenido_cambiante %}
+    <h1>{{ usertra }}</h1>
+{% endblock %}
+
+{% block contenido_cambiante %}
+    {% for mensajeuser in mensajesUsers %}
+        {% if mensajeuser.user_transmitter == usertra %}
+            {% if mensajeuser.user == userrec %}
+            <table>
+                <hr>
+                <h5><u>{{ mensajeuser.user_transmitter }}</u></h5>
+                <p>{{ mensajeuser.message }}</p>
+                <h10>{{ mensajeuser.fecha }} - {{ mensajeuser.hora }}</h10>
+            </table>  
+            {% endif %}
+        {% endif %}
+        {% if mensajeuser.user_transmitter == userrec %}
+            {% if mensajeuser.user == usertra %}
+                <table>
+                    <hr>
+                    <h5><u>{{ mensajeuser.user_transmitter }}</u></h5>
+                    <p>{{ mensajeuser.message}}</p>
+                    <h7>{{ mensajeuser.fecha }} - {{ mensajeuser.hora }}</h7>
+                </table>  
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% if usertra != userrec %}
+    <table>
+        <hr>
+        <a class="btn btn-info" href="{% url 'mensajesuser' usertra.id %}">Responder</a>
+    </table>  
+    {% endif %}
+{% endblock %}
+
+

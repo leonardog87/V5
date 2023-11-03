@@ -1,0 +1,20 @@
+{% block contenido_cambiante %} 
+
+{% for mensajeuser in mensajesUsers  %}
+    {% if mensajeuser.user.id == request.user.id and mensajeuser.user_transmitter.id == mensajeuser.user.id  %}
+        
+            {% if mensajeuser.user_transmitter %}
+        <table>
+            <hr>
+            de<h5>{{ mensajeuser.user_transmitter }}</h5>
+            para<h5>{{ mensajeuser.user }}</h5>
+            <p>{{ mensajeuser.message}}</p>
+            <h6>{{ mensajeuser.fecha}}</h6>        
+            &nbsp;<a class="btn btn-info" href="{% url 'mensajesuser' mensajeuser.user_transmitter.id %}">Responder</a>&nbsp;
+            <br>
+        </table>
+            {% endif %}
+      
+
+    {% endif %}
+{% endfor %}
