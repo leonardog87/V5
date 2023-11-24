@@ -20,4 +20,4 @@ def login_request(request):
             return render(request,"Login/login.html", {"form":form})#error datos
     else:
         form=AuthenticationForm()
-        return render(request,"Login/login.html", {"form":form})#error datos
+        return render(request,"Login/login.html", {"form":form})#GET

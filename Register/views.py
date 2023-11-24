@@ -7,8 +7,6 @@ def register(request):
     if request.method=="POST":
         form=RegisterUserForm(request.POST)
         if form.is_valid():
-            info=form.cleaned_data
-            nombre_usuario=info["username"]
             form.save()
             return render(request, "AppWeb/inicio.html")
         else:

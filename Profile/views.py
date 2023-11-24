@@ -17,10 +17,10 @@ def editarPerfil(request):
             usuario.save()
             return render(request, "AppWeb/inicio.html")
         else:
-            return render(request, "Profile/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
+            return render(request, "Profile/editarPerfil.html", {"form": form})
     else:
         form=UserEditForm(instance=usuario)
-        return render(request, "Profile/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
+        return render(request, "Profile/editarPerfil.html", {"form": form})
 
 class PasswordEdit(PasswordChangeView):
     form_class = FormularioPasswordEdit
@@ -38,8 +38,8 @@ def editarPassword(request):
             usuario.save()
             return render(request, "AppWeb/inicio.html")
         else:
-            return render(request, "Profile/editarPassword.html", {"form": form, "nombreusuario":usuario.username})
+            return render(request, "Profile/editarPassword.html", {"form": form})
     else:
         form=PasswordEditForm(instance=usuario)
-        return render(request, "Profile/editarPassword.html", {"form": form, "nombreusuario":usuario.username})
+        return render(request, "Profile/editarPassword.html", {"form": form})
     

@@ -17,10 +17,10 @@
 
 {% block contenido_cambiante %}
         <table>
-            {%for usuarios in diccionarioMensajes %}
+            {% for usuarios in diccionarioMensajes %}
                 <h4>{{ usuarios }}</h4>
                 &nbsp;<a class="btn btn-info" href="{% url 'mensajeUserDetail' usuarios.id %}">Ver</a>&nbsp;
                 <hr>        
             {% endfor %}
-        </table>  
+        </table>
 {% endblock %}

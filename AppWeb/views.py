@@ -30,13 +30,15 @@ def userList(request):
     return render(request,'AppWeb/userList.html', {"users":users})
 
 def mensajeUserList(request):
-    mensajesUsers=MensajeUser.objects.filter(user=request.user.id) 
-    diccionarioMensajes={}
-    for mensaje in mensajesUsers:
-        if mensaje.user_transmitter not in diccionarioMensajes:
-           lista_mensajes=[]
-           diccionarioMensajes[mensaje.user_transmitter] = lista_mensajes
-    return render(request,'AppWeb/mensajeUserList.html', {"mensajesUsers":mensajesUsers, "diccionarioMensajes":diccionarioMensajes})
+    mensajes=MensajeUser.objects.all()
+    users=User.objects.get(id=request.user.id)
+    diccionarioMensajes={}    
+    for mensaje in mensajes:
+        if mensaje.user == users:
+           diccionarioMensajes[mensaje.user_transmitter] = diccionarioMensajes
+        elif mensaje.user_transmitter == users:
+            diccionarioMensajes[mensaje.user] = diccionarioMensajes    
+    return render(request,'AppWeb/mensajeUserList.html', {"mensajes":mensajes, "diccionarioMensajes":diccionarioMensajes})
 
 def mensajeUserDetail(request, pk):
     usertra=User.objects.get(id=pk)
@@ -68,6 +70,7 @@ class BlogUpdate(UpdateView):
     success_url=reverse_lazy("blogList")
     fields=['titulofoto', 'titulomessage', 'message']
 
+#MENSAJE BLOG
 class MensajeCreate(CreateView):
     model=Mensaje
     success_url=reverse_lazy("blogList")
@@ -81,6 +84,7 @@ class BlogDelete(DeleteView):
     model=Blog
     success_url=reverse_lazy("blogList")
 
+#MENSAJE USER
 class MensajeUserCreate(CreateView):
     model=MensajeUser
     success_url=reverse_lazy("mensajeUserList")
@@ -89,4 +93,3 @@ class MensajeUserCreate(CreateView):
         form.instance.user_id=self.kwargs['pk']
         form.instance.user_transmitter=self.request.user        
         return super(MensajeUserCreate, self).form_valid(form)
-

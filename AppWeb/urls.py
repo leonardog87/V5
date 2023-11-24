@@ -27,7 +27,5 @@ urlpatterns = [
 #MENSAJEUSER
     path('mensajeUserForm/<pk>/nuevo/', MensajeUserCreate.as_view(), name="mensajesuser"),
     path('mensajeUserList/', mensajeUserList, name="mensajeUserList"),
-    #path('mensajeUserDetail/', mensajeUserDetail, name="mensajeUserDetail"),
     path('mensajeUserDetail/<pk>/', mensajeUserDetail, name="mensajeUserDetail"),
-
 ]
