@@ -32,7 +32,7 @@
                 <hr>
                 <h5><u>{{ mensajeuser.user_transmitter }}</u></h5>
                 <p>{{ mensajeuser.message }}</p>
-                <h10>{{ mensajeuser.fecha }} - {{ mensajeuser.hora }}</h10>
+                {{ mensajeuser.fecha }} - {{ mensajeuser.hora }}
             </table>  
             {% endif %}
         {% endif %}
@@ -42,7 +42,7 @@
                     <hr>
                     <h5><u>{{ mensajeuser.user_transmitter }}</u></h5>
                     <p>{{ mensajeuser.message}}</p>
-                    <h7>{{ mensajeuser.fecha }} - {{ mensajeuser.hora }}</h7>
+                    {{ mensajeuser.fecha }} - {{ mensajeuser.hora }}
                 </table>  
             {% endif %}
         {% endif %}
